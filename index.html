@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Legal Dilemmas of Posthumous Assisted Reproduction in Islamic Family Law</title>
+  
+  <!-- Google Fonts: Anek Malayalam, Amiri (Arabic), Plus Jakarta Sans (English) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Anek+Malayalam:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    :root {
+      --bg-dark: #09131f;
+      --bg-card: rgba(18, 30, 49, 0.85);
+      --bg-card-hover: rgba(26, 44, 72, 0.95);
+      --primary-gold: #e5ad35;
+      --primary-emerald: #10b981;
+      --accent-blue: #38bdf8;
+      --accent-purple: #c084fc;
+      --accent-coral: #fb7185;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-color: rgba(229, 173, 53, 0.25);
+      
+      /* Presenter Accent Badges */
+      --p1-color: #38bdf8;
+      --p2-color: #10b981;
+      --p3-color: #fbbf24;
+      --p4-color: #f43f5e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(at 10% 20%, rgba(16, 185, 129, 0.12) 0px, transparent 50%),
+        radial-gradient(at 90% 80%, rgba(229, 173, 53, 0.1) 0px, transparent 50%),
+        linear-gradient(to bottom, #050b14, #0b1728);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', 'Anek Malayalam', sans-serif;
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .anek-malayalam {
+      font-family: 'Anek Malayalam', sans-serif;
+    }
+
+    .arabic-text {
+      font-family: 'Amiri', serif;
+      direction: rtl;
+      font-size: 1.45rem;
+      line-height: 2.1;
+      color: var(--primary-gold);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+
+    /* Top Navigation / Status Header */
+    header {
+      padding: 12px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(5, 11, 20, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      z-index: 100;
+    }
+
+    .topic-badge {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--primary-gold);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-transform: uppercase;
+    }
+
+    .presenter-pill {
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+    }
+
+    .p1 { background: rgba(56, 189, 248, 0.15); border: 1px solid var(--p1-color); color: var(--p1-color); }
+    .p2 { background: rgba(16, 185, 129, 0.15); border: 1px solid var(--p2-color); color: var(--p2-color); }
+    .p3 { background: rgba(251, 191, 36, 0.15); border: 1px solid var(--p3-color); color: var(--p3-color); }
+    .p4 { background: rgba(244, 63, 94, 0.15); border: 1px solid var(--p4-color); color: var(--p4-color); }
+
+    /* Main Slide Container */
+    main {
+      flex: 1;
+      position: relative;
+      width: 100vw;
+      height: calc(100vh - 130px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 40px;
+    }
+
+    .slide {
+      position: absolute;
+      width: 92%;
+      max-width: 1350px;
+      height: 90%;
+      opacity: 0;
+      transform: translateY(20px) scale(0.98);
+      pointer-events: none;
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .slide.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: all;
+      z-index: 10;
+    }
+
+    /* Grid Layouts for Slide Content */
+    .slide-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 25px;
+      height: 100%;
+      align-items: stretch;
+    }
+
+    .slide-grid.full {
+      grid-template-columns: 1fr;
+    }
+
+    .slide-grid.equal {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .slide-grid.three-col {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Cards & Containers */
+    .content-box {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 28px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      overflow-y: auto;
+    }
+
+    .content-box.highlight {
+      border: 1px solid var(--border-color);
+      background: linear-gradient(135deg, rgba(22, 36, 58, 0.9), rgba(13, 23, 38, 0.95));
+    }
+
+    .title-large {
+      font-size: 2.2rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 8px;
+      background: linear-gradient(90deg, #ffffff, #cbd5e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .malayalam-subtitle {
+      font-family: 'Anek Malayalam', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--primary-gold);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .lead-text {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: #cbd5e1;
+      margin-bottom: 18px;
+    }
+
+    /* Linguistic Badges (English + Malayalam) */
+    .term-pill-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    .term-pill {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 6px 14px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+    }
+
+    .term-pill b {
+      color: var(--primary-gold);
+    }
+    
+    .term-pill span.ml {
+      font-family: 'Anek Malayalam', sans-serif;
+      color: var(--accent-blue);
+      margin-left: 6px;
+      font-weight: 500;
+    }
+
+    /* Islamic Quotes Box */
+    .islamic-quote-card {
+      background: rgba(5, 15, 28, 0.85);
+      border-right: 4px solid var(--primary-gold);
+      border-left: 1px solid rgba(255,255,255,0.06);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 16px 20px;
+      border-radius: 12px;
+      margin: 14px 0;
+    }
+
+    .quote-ref {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Key Points / List Items */
+    .point-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 10px 0;
+    }
+
+    .point-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.96rem;
+      line-height: 1.5;
+    }
+
+    .point-item i {
+      margin-top: 4px;
+      font-size: 0.9rem;
+    }
+
+    .point-item.blue i { color: var(--accent-blue); }
+    .point-item.emerald i { color: var(--primary-emerald); }
+    .point-item.gold i { color: var(--primary-gold); }
+    .point-item.coral i { color: var(--accent-coral); }
+
+    /* Visual Workflow / Graphic Blocks */
+    .diagram-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      justify-content: center;
+      height: 100%;
+    }
+
+    .diagram-step {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px dashed rgba(255, 255, 255, 0.15);
+      padding: 14px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      position: relative;
+    }
+
+    .diagram-step .icon-circle {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .step-arrow {
+      text-align: center;
+      color: var(--primary-gold);
+      font-size: 0.9rem;
+      margin: -6px 0;
+    }
+
+    /* Custom Tables */
+    .fiqh-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      margin-top: 10px;
+    }
+
+    .fiqh-table th {
+      background: rgba(229, 173, 53, 0.15);
+      color: var(--primary-gold);
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    .fiqh-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      color: #e2e8f0;
+    }
+
+    .fiqh-table tr:hover {
+      background: rgba(255,255,255,0.02);
+    }
+
+    /* Bottom Control Bar */
+    footer {
+      padding: 12px 30px;
+      background: rgba(5, 11, 20, 0.85);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-nav {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--text-main);
+      padding: 8px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-nav:hover {
+      background: var(--primary-gold);
+      color: #000;
+      border-color: var(--primary-gold);
+    }
+
+    .progress-wrapper {
+      flex: 1;
+      max-width: 450px;
+      margin: 0 25px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 5%;
+      background: linear-gradient(90deg, var(--accent-blue), var(--primary-gold));
+      transition: width 0.3s ease;
+    }
+
+    .slide-counter {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-align: center;
+      font-weight: 600;
+    }
+
+    /* Modal Directory Drawer */
+    .drawer-modal {
+      position: fixed;
+      top: 0;
+      left: -400px;
+      width: 360px;
+      height: 100vh;
+      background: rgba(8, 15, 26, 0.97);
+      backdrop-filter: blur(20px);
+      border-right: 1px solid var(--border-color);
+      box-shadow: 10px 0 40px rgba(0,0,0,0.8);
+      z-index: 999;
+      transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .drawer-modal.open {
+      left: 0;
+    }
+
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .drawer-list {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .drawer-item {
+      padding: 10px 14px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.03);
+      cursor: pointer;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .drawer-item:hover, .drawer-item.active {
+      border-color: var(--primary-gold);
+      background: rgba(229, 173, 53, 0.12);
+      color: var(--primary-gold);
+    }
+
+    /* Custom Responsive Overrides */
+    @media (max-width: 1024px) {
+      .slide-grid, .slide-grid.equal, .slide-grid.three-col {
+        grid-template-columns: 1fr;
+      }
+      .arabic-text { font-size: 1.25rem; }
+      .title-large { font-size: 1.7rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="topic-badge">
+      <i class="fa-solid fa-scale-balanced fa-lg"></i>
+      <span>Islamic Bioethics & Jurisprudence</span>
+    </div>
+    
+    <div id="presenterBadge" class="presenter-pill p1">
+      <i class="fa-solid fa-user-tie"></i>
+      <span id="presenterName">Presenter 1: Foundation & Biomedical Context</span>
+    </div>
+
+    <button id="drawerToggle" class="btn-nav" style="padding: 6px 12px;">
+      <i class="fa-solid fa-bars"></i> Slides (20)
+    </button>
+  </header>
+
+  <!-- MAIN SLIDES CONTAINER -->
+  <main>
+
+    <!-- ==============================================
+         PRESENTER 1: FOUNDATION & BIOMEDICAL CONTEXT (Slides 1 - 5)
+    =============================================== -->
+
+    <!-- SLIDE 1: Master Title -->
+    <section class="slide active" data-presenter="1" data-pname="Presenter 1: Foundations & Context">
+      <div class="slide-grid full">
+        <div class="content-box highlight" style="text-align: center; align-items: center; justify-content: center; padding: 45px;">
+          <span style="color: var(--primary-gold); font-size: 0.95rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">
+            RESEARCH PRESENTATION • ഇസ്ലാമിക കർമ്മശാസ്ത്രം
+          </span>
+          <h1 class="title-large" style="font-size: 2.8rem; margin: 15px 0;">
+            Legal Dilemmas of Posthumous Assisted Reproduction in Islamic Family Law
+          </h1>
+          <h2 class="malayalam-subtitle" style="font-size: 1.4rem; justify-content: center;">
+            മരണാനന്തര കൃത്രിമ പുനരുൽപാദനം: നസബ്, അനന്തരാവകാശം, ഇദ്ദ - ഇസ്ലാമിക കർമ്മശാസ്ത്ര വിശകലനം
+          </h2>
+          <div class="term-pill-group" style="justify-content: center; max-width: 800px; margin-top: 20px;">
+            <div class="term-pill"><b>Lineage:</b> <span class="ml">നസബ് (Nasab)</span></div>
+            <div class="term-pill"><b>Inheritance:</b> <span class="ml">മവാരീസ് (Mawarith)</span></div>
+            <div class="term-pill"><b>Waiting Period:</b> <span class="ml">ഇദ്ദ ('Iddah)</span></div>
+            <div class="term-pill"><b>Posthumous ART:</b> <span class="ml">മരണാനന്തര ഗർഭധാരണം</span></div>
+          </div>
+          <div style="margin-top: 30px; display: flex; gap: 20px; color: var(--text-muted); font-size: 0.9rem;">
+            <span><i class="fa-solid fa-users"></i> 4-Member Collaborative Panel</span>
+            <span><i class="fa-solid fa-book-quran"></i> Classical Fiqh & Modern Bio-Fatawa</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: Research Problem & The Core Conflict -->
+    <section class="slide" data-presenter="1" data-pname="Presenter 1: Foundations & Context">
+      <div class="slide-grid">
+        <div class="content-box">
+          <h3 class="title-large">The Modern Bioethical Trilemma</h3>
+          <div class="malayalam-subtitle">പ്രശ്നത്തിന്റെ കാതൽ: ശാസ്ത്ര സാങ്കേതികതയും ശരിഅത്തും</div>
+          <p class="lead-text">
+            Advancements in cryopreservation allow gametes (sperm/ova) to survive long after a spouse's death. This creates unprecedented conflicts in Islamic personal law (*Ahwal al-Shakhsiyyah*).
+          </p>
+          <ul class="point-list">
+            <li class="point-item blue">
+              <i class="fa-solid fa-circle-question"></i>
+              <div><b>Contractual Dissolution:</b> Does the marital bond (*'Aqd al-Nikah*) completely terminate at biological death?</div>
+            </li>
+            <li class="point-item emerald">
+              <i class="fa-solid fa-dna"></i>
+              <div><b>Lineage Crisis:</b> Can paternity be legally attributed to a deceased father whose marital contract has ended?</div>
+            </li>
+            <li class="point-item gold">
+              <i class="fa-solid fa-coins"></i>
+              <div><b>Financial Disruption:</b> How can inheritance (*Mawarith*) be distributed if potential heirs are conceived posthumously?</div>
+            </li>
+          </ul>
+        </div>
+        <div class="content-box highlight">
+          <h4 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-diagram-project"></i> Core Tripartite Dimensions</h4>
+          <div class="diagram-container">
+            <div class="diagram-step">
+              <div class="icon-circle" style="background: rgba(56,189,248,0.2); color: var(--accent-blue);">1</div>
+              <div><b>Nasab (Lineage):</b> Legal paternity vs. biological relation (<span class="anek-malayalam">കുടുംബ പരമ്പര</span>)</div>
+            </div>
+            <div class="diagram-step">
+              <div class="icon-circle" style="background: rgba(16,185,129,0.2); color: var(--primary-emerald);">2</div>
+              <div><b>Mawarith (Inheritance):</b> Estate closure vs. suspended rights (<span class="anek-malayalam">അനന്തരാവകാശം</span>)</div>
+            </div>
+            <div class="diagram-step">
+              <div class="icon-circle" style="background: rgba(251,191,36,0.2); color: var(--primary-gold);">3</div>
+              <div><b>'Iddah (Mourning Period):</b> Marital transition vs. womb clearing (<span class="anek-malayalam">ഇദ്ദ കാലഘട്ടം</span>)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: Biomedical Mechanisms of Posthumous Reproduction -->
+    <section class="slide" data-presenter="1" data-pname="Presenter 1: Foundations & Context">
+      <div class="slide-grid">
+        <div class="content-box">
+          <h3 class="title-large">Biomedical Procedures</h3>
+          <div class="malayalam-subtitle">മരണാനന്തര പുനരുൽപാദനത്തിന്റെ ശാസ്ത്രീയ വശങ്ങൾ</div>
+          <p class="lead-text">
+            Posthumous reproduction occurs primarily through two clinical pathways:
+          </p>
+          <ul class="point-list">
+            <li class="point-item blue">
+              <i class="fa-solid fa-snowflake"></i>
+              <div><b>Pre-Mortem Cryopreservation:</b> Gametes stored prior to chemotherapy, risky surgery, or sudden demise. (<span class="anek-malayalam">മരണത്തിന് മുമ്പുള്ള ബീജസംരക്ഷണം</span>)</div>
+            </li>
+            <li class="point-item coral">
+              <i class="fa-solid fa-syringe"></i>
+              <div><b>Posthumous Sperm Retrieval (PSR):</b> Surgical harvesting of spermatozoa from the testes/epididymis within 24–36 hours post-cardiac death. (<span class="anek-malayalam">മരണാനന്തര ശസ്ത്രക്രിയാ സംഭരണം</span>)</div>
+            </li>
+            <li class="point-item emerald">
+              <i class="fa-solid fa-microscope"></i>
+              <div><b>Subsequent Assisted Insemination:</b> Utilizing IVF/ICSI months or years after the husband's demise into the surviving widow's womb.</div>
+            </li>
+          </ul>
+        </div>
+        <div class="content-box highlight">
+          <h4 style="color: var(--primary-gold); margin-bottom: 15px;"><i class="fa-solid fa-timeline"></i> The Procedural Timeline Issue</h4>
+          <div class="diagram-container">
+            <div class="diagram-step">
+              <i class="fa-solid fa-heart-pulse" style="color: var(--accent-coral); font-size: 1.4rem;"></i>
+              <div><b>Point T0: Husband's Death</b><br><small style="color: var(--text-muted);">Legal marriage terminates in Classical Fiqh.</small></div>
+            </div>
+            <div class="step-arrow"><i class="fa-solid fa-arrow-down"></i> Interval: Months / Years</div>
+            <div class="diagram-step">
+              <i class="fa-solid fa-vial" style="color: var(--accent-blue); font-size: 1.4rem;"></i>
+              <div><b>Point T1: Posthumous Insemination (IVF)</b><br><small style="color: var(--text-muted);">Conception occurs when marriage contract is non-existent.</small></div>
+            </div>
+            <div class="step-arrow"><i class="fa-solid fa-arrow-down"></i> 9 Months Gestation</div>
+            <div class="diagram-step">
+              <i class="fa-solid fa-baby" style="color: var(--primary-emerald); font-size: 1.4rem;"></i>
+              <div><b>Point T2: Birth of Child</b><br><small style="color: var(--text-muted);">Legal status of Nasab & Mawarith questioned.</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: Marital Contract Dissolution (*Inqida' al-Zawjiyyah*) -->
+    <section class="slide" data-presenter="1" data-pname="Presenter 1: Foundations & Context">
+      <div class="slide-grid">
+        <div class="content-box">
+          <h3 class="title-large">Dissolution of Marriage by Death</h3>
+          <div class="malayalam-subtitle">മരണത്തോടെ വൈവാഹിക കരാർ അവസാനിക്കൽ (ഇൻഖിദാഉസ്സൗജിയ്യത്ത്)</div>
+          <p class="lead-text">
+            The bedrock premise in Islamic jurisprudence is that death (*Mawt*) immediately dissolves the marital contract (*Nikah*) and all conjugal permissions (*Hilliyyah*).
+          </p>
+          <div class="islamic-quote-card">
+            <div class="arabic-text">الْمَوْتُ يَقْطَعُ النِّكَاحَ وَيُزِيلُ حِلِّيَّةَ الاسْتِمْتَاعِ</div>
+            <div class="quote-ref">
+              <span><b>Fiqh Maxim:</b> "Death severs marriage and eliminates conjugal legality."</span>
+              <span class="anek-malayalam">കർമ്മശാസ്ത്ര തത്വം</span>
+            </div>
+          </div>
+          <ul class="point-list">
+            <li class="point-item gold">
+              <i class="fa-solid fa-circle-check"></i>
+              <div><b>Termination of Coitus Rights:</b> The widow is strictly non-permissible for conjugal relations with the deceased husband.</div>
+            </li>
+          </ul>
+        </div>
+        <div class="content-box">
+          <h4 style="color: var(--primary-gold); margin-bottom: 10px;">Madhab Perspectives on Death & Marriage</h4>
+          <table class="fiqh-table">
+            <thead>
+              <tr>
+                <th>School (മദ്ഹബ്)</th>
+                <th>Status of Contract at Death</th>
+                <th>Post-Mortem Wash (Ghisl)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>Hanafi (ഹനഫി)</b></td>
+                <td>Ends instantaneously upon demise</td>
+                <td>Spouse cannot wash the deceased</td>
+              </tr>
+              <tr>
+                <td><b>Shafi'i (ശാഫിഈ)</b></td>
+                <td>Ends, but trace sanctity remains for 'Iddah</td>
+                <td>Spouses may wash each other</td>
+              </tr>
+              <tr>
+                <td><b>Maliki & Hanbali</b></td>
+                <td>Contract ceases; specific residual ties remain</td>
+                <td>Allowed under specific conditions</td>
+              </tr>
+            </tbody>
+          </table>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 14px;">
+            <b>Core Consensus:</b> None of the 4 classical Sunni schools permit initiating reproduction after the husband’s death.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: Fiqh Maxim: Default Prohibition in Conjugal Matters -->
+    <section class="slide" data-presenter="1" data-pname="Presenter 1: Foundations & Context">
+      <div class="slide-grid full">
+        <div class="content-box highlight">
+          <h3 class="title-large">Legal Maxim: Default Status of Sexual Legality</h3>
+          <div class="malayalam-subtitle">ലൈംഗിക വിശുദ്ധിയിലെ അടിസ്ഥാന തത്വം: നിഷിദ്ധം (അൽ-അസ്ലു ഫിൽ അബ്ദാഅ് അത്-തഹ്രീം)</div>
+          
+          <div class="islamic-quote-card" style="margin: 20px 0;">
+            <div class="arabic-text">الْأَصْلُ فِي الْأَبْضَاعِ التَّحْرِيمُ حَتَّى يَثْبُتَ الْحِلُّ بِيَقِينٍ</div>
+            <div class="quote-ref">
+              <span><b>Legal Maxim (Al-Suyuti / Ibn Nujaym):</b> "The default presumption in reproductive matters is absolute prohibition until established with certainty."</span>
+              <span class="anek-malayalam">അൽ-അശ്ബാഹ് വന്നളാഇർ</span>
+            </div>
+          </div>
+
+          <div class="slide-grid equal" style="margin-top: 15px;">
+            <div style="background: rgba(255,255,255,0.03); padding: 18px; border-radius: 12px;">
+              <h4 style="color: var(--accent-blue);"><i class="fa-solid fa-shield-halved"></i> Strict Precaution (*Ihtiyat*)</h4>
+              <p style="font-size: 0.9rem; color: #cbd5e1; margin-top: 8px;">
+                Unlike financial contracts where the default is permissibility (*Ibahah*), lineage and reproductive unions demand extreme precaution. Any ambiguity (*Shubhah*) invalidates posthumous fertilisation.
+              </p>
+            </div>
+            <div style="background: rgba(255,255,255,0.03); padding: 18px; border-radius: 12px;">
+              <h4 style="color: var(--primary-gold);"><i class="fa-solid fa-hand-holding-hand"></i> The Crucial Conclusion of P1</h4>
+              <p style="font-size: 0.9rem; color: #cbd5e1; margin-top: 8px;">
+                Because death abolishes the active marriage contract, posthumous conception occurs when no valid legal union (*Nikah Sahih*) exists at the precise moment of fertilisation.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         PRESENTER 2: NASAB & PATERNITY (Slides 6 - 10)
+    =============================================== -->
+
+    <!-- SLIDE 6: Maqasid al-Shari'ah & Preservation of Lineage (*Hifz al-Nasl*) -->
+    <section class="slide" data-presenter="2" data-pname="Presenter 2: Nasab & Lineage">
+      <div class="slide-grid">
+        <div class="content-box">
+          <h3 class="title-large">Maqasid al-Shari'ah: Hifz al-Nasl</h3>
+          <div class="malayalam-subtitle">ശരീഅത്തിന്റെ ലക്ഷ്യങ്ങൾ: തലമുറയുടെയും പരമ്പരയുടെയും സംരക്ഷണം</div>
+          <p class="lead-text">
+            One of the 5 essential higher objectives of Islamic Law (*Al-Daruriyyat al-Khamsah*) is the preservation of lineage (*Hifz al-Nasl / Nasab*).
+          </p>
+          <div class="islamic-quote-card">
+            <div class="arabic-text">وَهُوَ الَّذِي خَلَقَ مِنَ الْمَاءِ بَشَرًا فَجَعَلَهُ نَسَبًا وَصِهْرًا ۗ وَكَانَ رَبُّكَ قَدِيرًا</div>
+            <div class="quote-ref">
+              <span><b>Surah Al-Furqan (25:54):</b> "And it is He who has created from water a human being and made him [a tie of] lineage and marriage."</span>
+              <span class="anek-malayalam">വിശുദ്ധ ഖുർആൻ 25:54</span>
+            </div>
+          </div>
+        </div>
+        <div class="content-box highlight">
+          <h4 style="color: var(--primary-emerald); margin-bottom: 12px;"><i class="fa-solid fa-bullseye"></i> Dual Legal Imperatives in Maqasid</h4>
+          <ul class="point-list">
+            <li class="point-item emerald">
+              <i class="fa-solid fa-circle-check"></i>
+              <div><b>Positive Dimension (*Min Janib al-Wujud*):</b> Encouraging legitimate procreation through a valid, living marriage contract. (<span class="anek-malayalam">നിയമപരമായ വംശവർദ്ധനവ്</span>)</div>
+            </li>
+            <li class="point-item coral">
+              <i class="fa-solid fa-ban"></i>
+              <div><b>Preventative Dimension (*Min Janib al-'Adam*):</b> Preventing confusion of lineage (*Ikhtilat al-Ansab*) and safeguarding psychological identity. (<span class="anek-malayalam">പരമ്പരയിലെ സങ്കീർണ്ണത തടയൽ</span>)</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: The Master Principle: *Al-Walad li al-Firash* -->
+    <section class="slide" data-presenter="2" data-pname="Presenter 2: Nasab & Lineage">
+      <div class="slide-grid">
+        <div class="content-box">
+          <h3 class="title-large">The Marital Bed Principle</h3>
+          <div class="malayalam-subtitle">വിവാഹബന്ധത്തിലെ വിരിപ്പിലെ സന്തതി (അൽ-വലദു ലിൽ-ഫിറാശ്)</div>
+          
+          <div class="islamic-quote-card">
+            <div class="arabic-text">الْوَلَدُ لِلْفِرَاشِ وَلِلْعَاهِرِ الْحَجَرُ</div>
+            <div class="quote-ref">
+              <span><b>Prophetic Hadith (Sahih al-Bukhari & Muslim):</b> "The child belongs to the marital bed (*Firash*), and for the adulterer is the stone."</span>
+              <span class="anek-malayalam">സ്വഹീഹുൽ ബുഖാരി & മുസ്ലിം</span>
+            </div>
+          </div>
+          <p class="lead-text" style="font-size: 0.95rem;">
+            For a child to receive legitimate *Nasab* (paternity), three rigorous conditions must be fulfilled simultaneously:
+          </p>
+          <ul class="point-list">
+            <li class="point-item gold">
+              <i class="fa-solid fa-1"></i>
+              <div><b>Valid Marriage (*Nikah Sahih*):</b> An active legal contract at the moment of conception.</div>
+            </li>
+            <li class="point-item blue">
+              <i class="fa-solid fa-2"></i>
+              <div><b>Possibility of Cohabitation:</b> Physical or biological feasibility during life.</div>
+            </li>
+            <li class="point-item emerald">
+              <i class="fa-solid fa-3"></i>
+              <div><b>Gestation Thresholds:</b> Birth occurring within the defined maximum gestation period from the last cohabitation.</div>
+            </li>
+          </ul>
+        </div>
+        <div class="content-box">
+          <h4 style="color: var(--accent-coral); margin-bottom: 10px;">Why Posthumous Conception Fails the *Firash*</h4>
+          <div class="diagram-container">
+            <div class="diagram-step" style="border-color: rgba(244,63,94,0.3);">
+              <i class="fa-solid fa-times-circle" style="color: var(--accent-coral); font-size: 1.5rem;"></i>
+              <div>
+                <b>Absence of Living Firash:</b>
+                <p style="font-size: 0.85rem; color: #94a3b8;">Upon the husband's death, the *Firash* (marital bed) is legally extinguished. There is no active husband to attribute the child to.</p>
+              </div>
+            </div>
+            <div class="diagram-step" style="border-color: rgba(251,191,36,0.3);">
+              <i class="fa-solid fa-triangle-exclamation" style="color: var(--primary-gold); font-size: 1.5rem;"></i>
+              <div>
+                <b>Bio-Genetic vs. Legal Father:</b>
+                <p style="font-size: 0.85rem; color: #94a3b8;">Islamic jurisprudence does not equate mere DNA/biological contribution with legitimate *Nasab* in the absence of valid *Firash*.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: The Legal Status of *Istidkhal al-Mani* (Self-Insemination Post-Mortem) -->
+    <section class="slide" data-presenter="2" data-pname="Presenter 2: Nasab & Lineage">
+      <div class="slide-grid">
+        <div class="content-box highlight">
+          <h3 class="title-large">Classical Jurisprudence on Post-Mortem Semen</h3>
+          <div class="malayalam-subtitle">ഭർത്താവിന്റെ മരണശേഷമുള്ള ബീജപ്രവേശം (ഇസ്തിദ്ഖാലുൽ മനിയ്യി)</div>
+          <p class="lead-text">
+            Classical jurists (Fuqaha) anticipated analogous scenarios: <i>"If a widow introduces her deceased husband's sperm into her womb, is Nasab established?"</i>
+          </p>
+          <ul class="point-list">
+            <li class="point-item coral">
+              <i class="fa-solid fa-gavel"></i>
+              <div><b>Shafi'i & Hanbali Majority:</b> Paternity is <b>NOT</b> established because conception occurred when the subject was dead and the marriage dissolved. (<span class="anek-malayalam">നസബ് സ്ഥിരപ്പെടുകയില്ല</span>)</div>
+            </li>
+            <li class="point-item gold">
+              <i class="fa-solid fa-scale-unbalanced"></i>
+              <div><b>Non-Applicability of Hadd:</b> While not penal adultery (*Zina*), it remains a prohibited illicit act (*Haram / Shubhah*).</div>
+            </li>
+          </ul>
+        </div>
+        <div class="content-box">
+          <div class="islamic-quote-card">
+            <div class="arabic-text">وَلَوْ اسْتَدْخَلَتْ مَاءَ زَوْجِهَا الْمَيِّتِ لَمْ يَلْحَقْهُ النَّسَبُ؛ لِأَنَّهُ لَيْسَ بِوَطْءٍ وَلَا هُوَ فِي حُكْمِهِ لِانْقِطَاعِ النِّكَاحِ بِالْمَوْتِ</div>
+            <div class="quote-ref">
+              <span><b>Imam al-Nawawi / Tuhfat al-Muhtaj:</b> "If she introduces her dead husband's seminal fluid, lineage is not attributed to him, because the marital relation has severed by death."</span>
+              <span class="anek-malayalam">തുഹ്ഫത്തുൽ മുഹ്താജ്</span>
+            </div>
+          </div>
+          <div style="margin-top: 15px; padding: 12px; background: rgba(56,189,248,0.08); border-radius: 8px; border: 1px solid rgba(56,189,248,0.2);">
+            <b style="color: var(--accent-blue);">Key Finding:</b> Classical Fiqh explicitly ruled against establishing *Nasab* if insemination occurs post-mortem.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: Contemporary Institutional Fatawa (OIC & Al-Azhar) -->
+    <section class="slide" data-presenter="2" data-pname="Presenter 2: Nasab & Lineage">
+      <div class="slide-grid full">
+        <div class="content-box">
+          <h3 class="title-large">Contemporary Consensus of Fiqh Academies</h3>
+          <div class="malayalam-subtitle">ആധുനിക ഫിഖ്ഹ് അക്കാദമികളുടെ ഫത്‌വകൾ</div>
+          <div class="slide-grid three-col" style="margin-top: 15px; gap: 18px;">
+            
+            <div style="background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.25); padding: 20px; border-radius: 14px;">
+              <div style="color: var(--primary-emerald); font-size: 1.2rem; font-weight: 700; margin-bottom: 10px;">
+                <i class="fa-solid fa-landmark"></i> IFA (OIC) Resolution
+              </div>
+              <p style="font-size: 0.88rem; line-height: 1.5; color: #cbd5e1;">
+                <b>Resolution No. 16 (4/3):</b> Categorically rules that ART is only lawful when conducted between <i>living spouses during the subsistence of a valid marriage</i>. Posthumous insemination is strictly <b>HARAM</b>.
+              </p>
+            </div>
+
+            <div style="background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.25); padding: 20px; border-radius: 14px;">
+              <div style="color: var(--accent-blue); font-size: 1.2rem; font-weight: 700; margin-bottom: 10px;">
+                <i class="fa-solid fa-mosque"></i> Al-Azhar Fatwa Council
+              </div>
+              <p style="font-size: 0.88rem; line-height: 1.5; color: #cbd5e1;">
+                Issued fatwas affirming that any fertilization occurring after the husband's demise is invalid; remaining cryopreserved sperm must be destroyed upon the husband's death.
+              </p>
+            </div>
+
+            <div style="background: rgba(251,191,36,0.08); border: 1px solid rgba(251,191,36,0.25); padding: 20px; border-radius: 14px;">
+              <div style="color: var(--primary-gold); font-size: 1.2rem; font-weight: 700; margin-bottom: 10px;">
+                <i class="fa-solid fa-kaaba"></i> Muslim World League (MWL)
+              </div>
+              <p style="font-size: 0.88rem; line-height: 1.5; color: #cbd5e1;">
+                Islamic Jurisprudence Council (Makkah): Posthumous fertilization leads to mixed lineage, loss of legal custody, and severe violation of inheritance rules.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: Comparative Legal Analysis: Sunni, Shia & Western Law -->
+    <section class="slide" data-presenter="2" data-pname="Presenter 2: Nasab & Lineage">
+      <div class="slide-grid">
+        <div class="content-box">
+          <h3 class="title-large">Comparative Legal Perspectives</h3>
+          <div class="malayalam-subtitle">വിവിധ നിയമധാരകളിലെ താരതമ്യം</div>
+          <table class="fiqh-table">
+            <thead>
+              <tr>
+                <th>Jurisdiction</th>
+                <th>Posthumous ART Legality</th>
+                <th>Nasab / Legal Parentage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>Sunni Fiqh Consensus</b></td>
+                <td><span style="color: var(--accent-coral); font-weight: 700;">Prohibited (Haram)</span></td>
+                <td>Not attributed to deceased husband</td>
+              </tr>
+              <tr>
+                <td><b>Minority Shia (Ja'fari)</b></td>
+                <td>Permitted by some (e.g., Khamenei) if consent exists</td>
+                <td>Biological link recognized, inheritance debated</td>
+              </tr>
+              <tr>
+                <td><b>UK Law (HFEA Act)</b></td>
+                <td>Allowed with explicit written consent</td>
+                <td>Named on birth certificate if consented</td>
+              </tr>
+              <tr>
+                <td><b>Israeli Law</b></td>
+                <td>Permitted for widows with presumed consent</td>
+                <td>Full legal status as deceased's child</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="content-box highlight">
+          <h4 style="color: var(--primary-gold);"><i class="fa-solid fa-clipboard-check"></i> Synthesis for Presenter 2</h4>
+          <p style="font-size: 0.92rem; color: #cbd5e1; margin-top: 10px; line-height: 1.6;">
+            The overwhelming Sunni consensus denies *Nasab* to posthumously conceived children because the valid *Firash* ceased at death. Genetic relationship alone does not fulfill the requirements of Islamic paternity.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         PRESENTER 3: MAWARITH & INHERITANCE (Slides 11 - 15)
+    =============================================== -->
+
+    <!-- SLIDE 11: Conditions of Inheritance (*Shurut al-Irth*) -->
+    <section class="slide" data-presenter="3" data-pname="Presenter 3: Mawarith & Financials">
+      <div class="slide-grid">
+        <div class="content-box">
+          <h3 class="title-large">Conditions for Islamic Inheritance</h3>
+          <div class="malayalam-subtitle">അനന്തരാവകാശത്തിന്റെ നിബന്ധനകൾ (ശുറൂത്വുൽ ഇർസ്)</div>
+          <p class="lead-text">
+            In Islamic law, inheritance (*Mawarith / Mirath*) is an involuntary, divinely ordained system (*Nizam al-Jabri*) governed by strict temporal conditions.
+          </p>
+          <ul class="point-list">
+            <li class="point-item gold">
+              <i class="fa-solid fa-skull"></i>
+              <div><b>1. Death of the Prepositus (*Mawt al-Muwarrith*):</b> Established either through biological fact or judicial declaration.</div>
+            </li>
+            <li class="point-item blue">
+              <i class="fa-solid fa-heart-pulse"></i>
+              <div><b>2. Survival of Heir (*Hayat al-Warith*):</b> The heir must be undeniably <b>alive</b> at the exact instant of the deceased's death. (<span class="anek-malayalam">അനന്തരാവകാശിയുടെ ജീവൻ</span>)</div>
+            </li>
+            <li class="point-item emerald">
+              <i class="fa-solid fa-link"></i>
+              <div><b>3. Cause of Inheritance (*Sabab al-Irth*):</b> Valid active lineage, valid marriage, or *Wala'*.</div>
+            </li>
+          </ul>
+        </div>
+        <div class="content-box highlight">
+          <div class="islamic-quote-card">
+            <div class="arabic-text">شَرْطُ اسْتِحْقَاقِ الْإِرْثِ: تَيَقُّنُ حَيَاةِ الْوَارِثِ حِينَ مَوْتِ الْمُوَرِّثِ</div>
+            <div class="quote-ref">
+              <span><b>Classical Fiqh Rule (Al-Rahabiyyah):</b> "The non-negotiable condition of inheritance is the proven life of the heir at the exact moment of the ancestor's death."</span>
+              <span class="anek-malayalam">റഹബിയ്യഃ - മീറാസ്</span>
+            </div>
+          </div>
+          <div style="background: rgba(244,63,94,0.1); border: 1px solid rgba(244,63,94,0.3); padding: 14px; border-radius: 10px; margin-top: 15px;">
+            <b style="color: var(--accent-coral);">The Posthumous ART Flaw:</b>
+            <p style="font-size: 0.85rem; color: #cbd5e1; margin-top: 5px;">A posthumously conceived entity was merely cryopreserved gametes at the time of the father's demise—it was <b>not a living human or fetus</b>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 12: *Al-Haml* (Fetus in Utero) vs. Cryopreserved Gametes -->
+    <section class="slide" data-presenter="3" data-pname="Presenter 3: Mawarith & Financials">
+      <div class="slide-grid full">
+        <div class="content-box">
+          <h3 class="title-large">The Crucial Legal Distinction: *Al-Haml* vs. Gametes</h3>
+          <div class="malayalam-subtitle">ഗർഭസ്ഥ ശിശുവും (ഹംല്) ഫ്രീസറിലെ ബീജവും തമ്മിലുള്ള വ്യത്യാസം</div>
+          
+          <div class="slide-grid equal" style="margin-top: 15px; gap: 20px;">
+            <div style="background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.3); padding: 22px; border-radius: 14px;">
+              <h4 style="color: var(--primary-emerald); font-size: 1.2rem; margin-bottom: 10px;">
+                <i class="fa-solid fa-person-pregnant"></i> The Fetus in Utero (*Al-Haml al-Mustaqirr*)
+              </h4>
+              <ul class="point-list">
+                <li class="point-item emerald">
+                  <i class="fa-solid fa-check"></i>
+                  <div>Conceived <b>prior</b> to the father's death inside the mother's womb.</div>
+                </li>
+                <li class="point-item emerald">
+                  <i class="fa-solid fa-check"></i>
+                  <div>Assigned a reserved share in inheritance (*Hajz al-Tarkah*) until born alive.</div>
+                </li>
+                <li class="point-item emerald">
+                  <i class="fa-solid fa-check"></i>
+                  <div>Consensus (*Ijma'*) among all Sunni schools on full inheritance rights.</div>
+                </li>
+              </ul>
+            </div>
+
+            <div style="background: rgba(244,63,94,0.08); border: 1px solid rgba(244,63,94,0.3); padding: 22px; border-radius: 14px;">
+              <h4 style="color: var(--accent-coral); font-size: 1.2rem; margin-bottom: 10px;">
+                <i class="fa-solid fa-vial"></i> Cryopreserved Gamete (In Vitro)
+              </h4>
+              <ul class="point-list">
+                <li class="point-item coral">
+                  <i class="fa-solid fa-times"></i>
+                  <div><b>Not conceived</b> at the time of the father's death; remains cellular material.</div>
+                </li>
+                <li class="point-item coral">
+                  <i class="fa-solid fa-times"></i>
+                  <div>Has no legal personhood (*Dhimmah*) or capacity for acquisition (*Ahliyyat al-Wujub*).</div>
+                </li>
+                <li class="point-item coral">
+                  <i class="fa-solid fa-times"></i>
+                  <div><b>Zero inheritance claim</b> under classical and contemporary Sunni jurisprudence.</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 13: Freezing the Estate (*Tarkah* Impasse) -->
+    <section class="slide" data-presenter="3" data-pname="Presenter 3: Mawarith & Financials">
+      <div class="slide-grid">
+        <div class="content-box">
+          <h3 class="title-large">The Estate Distribution Impasse</h3>
+          <div class="malayalam-subtitle">അനന്തരസ്വത്ത് വിഭജനത്തിലെ പ്രതിസന്ധി (തർക്ക)</div>
+          <p class="lead-text">
+            If posthumous reproduction were recognized, it would paralyze the Quranic mandate of immediate estate division (*Tarkah*).
+          </p>
+          <ul class="point-list">
+            <li class="point-item coral">
+              <i class="fa-solid fa-hourglass-half"></i>
+              <div><b>Indefinite Freezing:</b> Gametes can remain frozen for decades. Living heirs would be barred from receiving their divine shares.</div>
+            </li>
+            <li class="point-item gold">
+              <i class="fa-solid fa-chart-pie"></i>
+              <div><b>Fluctuating Quotas:</b> The birth of a posthumous son would constantly alter or reduce the shares of living uncles, brothers, and the widow.</div>
+            </li>
+            <li class="point-item blue">
+              <i class="fa-solid fa-scale-unbalanced-flip"></i>
+              <div><b>Harm to Living Heirs (*Darar*):</b> Violates the universal Islamic maxim: <i>"Harm shall neither be inflicted nor reciprocated" (La Darar wa-la Dirar)</i>.</div>
+            </li>
+          </ul>
+        </div>
+        <div class="content-box highlight">
+          <div class="diagram-container">
+            <h4 style="color: var(--primary-gold); margin-bottom: 10px;">Hypothetical Estate Disruption</h4>
+            <div class="diagram-step">
+              <i class="fa-solid fa-users" style="color: var(--accent-blue); font-size: 1.3rem;"></i>
+              <div><b>Living Heirs at Death:</b> Widow (1/8), Parents (1/6 each), Brother (Residuary). Estate settles.</div>
+            </div>
+            <div class="step-arrow"><i class="fa-solid fa-arrows-rotate"></i> 3 Years Later: Posthumous Boy Born</div>
+            <div class="diagram-step">
+              <i class="fa-solid fa-triangle-exclamation" style="color: var(--accent-coral); font-size: 1.3rem;"></i>
+              <div><b>Total Collapse of Prior Division:</b> The boy would reduce widow to 1/8, strip the brother entirely (*Hajb*), and force clawback of spent funds.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 14: Bequest (*Wasiyyah*) as an Alternative Financial Remedy -->
+    <section class="slide" data-presenter="3" data-pname="Presenter 3: Mawarith & Financials">
+      <div class="slide-grid">
+        <div class="content-box">
+          <h3 class="title-large">Wasiyyah: A Possible Financial Instrument?</h3>
+          <div class="malayalam-subtitle">വിൽപത്രത്തിലൂടെയുള്ള സാമ്പത്തിക പരിഹാരം (വസ്വിയ്യത്ത്)</div>
+          <p class="lead-text">
+            While Quranic inheritance (*Mawarith*) is legally barred due to absence of *Nasab*, can the deceased provide for such a child through a testamentary bequest (*Wasiyyah*)?
+          </p>
+          <ul class="point-list">
+            <li class="point-item emerald">
+              <i class="fa-solid fa-file-signature"></i>
+              <div><b>1/3rd Rule (*Thuluth*):</b> A Muslim may bequeath up to one-third of the net estate to non-heirs.</div>
+            </li>
+            <li class="point-item blue">
+              <i class="fa-solid fa-hand-holding-dollar"></i>
+              <div><b>Non-Heir Status (*La Wasiyyata li-Warith*):</b> Since the posthumously conceived child is legally not an heir, a *Wasiyyah* in their favor is technically valid.</div>
+            </li>
+          </ul>
+        </div>
+        <div class="content-box highlight">
+          <div class="islamic-quote-card">
+            <div class="arabic-text">الثُّلُثُ وَالثُّلُثُ كَثِيرٌ، إِنَّكَ أَنْ تَذَرَ وَرَثَتَكَ أَغْنِيَاءَ خَيْرٌ مِنْ أَنْ تَذَرَهُمْ عَالَةً يَتَكَفَّفُونَ النَّاسَ</div>
+            <div class="quote-ref">
+              <span><b>Sahih al-Bukhari:</b> "[Bequeath] one-third, and one-third is much..."</span>
+              <span class="anek-malayalam">സ്വഹീഹുൽ ബുഖാരി</span>
+            </div>
+          </div>
+          <div style="padding: 14px; background: rgba(251,191,36,0.1); border: 1px solid rgba(251,191,36,0.3); border-radius: 10px; margin-top: 10px;">
+            <b style="color: var(--primary-gold);">Juridical Caveat:</b>
+            <p style="font-size: 0.85rem; color: #cbd5e1; margin-top: 4px;">
+              Although financially feasible via *Wasiyyah*, it does <b>not</b> cure the religious prohibition (*Hurmah*) of the posthumous procedure itself.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 15: Child Support (*Nafaqah*) & Custody Overview -->
+    <section class="slide" data-presenter="3" data-pname="Presenter 3: Mawarith & Financials">
+      <div class="slide-grid full">
+        <div class="content-box">
+          <h3 class="title-large">Financial Maintenance & Paternal Obligations</h3>
+          <div class="malayalam-subtitle">ചെലവിനങ്ങൾക്ക് നൽകൽ (നഫഖ), സംരക്ഷണം (ഹളാനത്ത്)</div>
+          
+          <div class="slide-grid three-col" style="margin-top: 15px; gap: 15px;">
+            <div style="background: rgba(255,255,255,0.03); padding: 18px; border-radius: 12px; border-top: 3px solid var(--accent-coral);">
+              <h4 style="color: var(--accent-coral);"><i class="fa-solid fa-ban"></i> No Claim on Paternal Estate</h4>
+              <p style="font-size: 0.88rem; color: #cbd5e1; margin-top: 8px;">
+                Since paternity (*Nasab*) is legally denied, the deceased father's estate and his living relatives have no legal obligation to pay child support (*Nafaqah*).
+              </p>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.03); padding: 18px; border-radius: 12px; border-top: 3px solid var(--primary-gold);">
+              <h4 style="color: var(--primary-gold);"><i class="fa-solid fa-person-dress"></i> Sole Maternal Liability</h4>
+              <p style="font-size: 0.88rem; color: #cbd5e1; margin-top: 8px;">
+                The mother who underwent the unauthorized posthumous procedure bears full financial, moral, and physical liability for raising the child.
+              </p>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.03); padding: 18px; border-radius: 12px; border-top: 3px solid var(--accent-blue);">
+              <h4 style="color: var(--accent-blue);"><i class="fa-solid fa-hands-holding-child"></i> Lineage to Mother Only</h4>
+              <p style="font-size: 0.88rem; color: #cbd5e1; margin-top: 8px;">
+                The child is attributed exclusively to the mother (*Yunsabu li-Ummihi*), mirroring the status of children born out of non-valid contracts.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         PRESENTER 4: 'IDDAH, ETHICS & CONCLUSION (Slides 16 - 20)
+    =============================================== -->
+
+    <!-- SLIDE 16: Teleology & Mandate of 'Iddah (*Hifz al-Arham*) -->
+    <section class="slide" data-presenter="4" data-pname="Presenter 4: 'Iddah, Ethics & Synthesis">
+      <div class="slide-grid">
+        <div class="content-box">
+          <h3 class="title-large">The Institution of 'Iddah</h3>
+          <div class="malayalam-subtitle">ഇദ്ദയുടെ ലക്ഷ്യവും നിർബന്ധതയും (ഹിഫ്ളുൽ അർഹാം)</div>
+          <p class="lead-text">
+            The waiting period (*'Iddah*) following the husband's death is 4 lunar months and 10 days (or until delivery if already pregnant).
+          </p>
+          <div class="islamic-quote-card">
+            <div class="arabic-text">وَالَّذِينَ يُتَوَفَّوْنَ مِنكُمْ وَيَذَرُونَ أَزْوَاجًا يَتَرَبَّصْنَ بِأَنفُسِهِنَّ أَرْبَعَةَ أَشْهُرٍ وَعَشْرًا</div>
+            <div class="quote-ref">
+              <span><b>Surah Al-Baqarah (2:234):</b> "And those who are taken in death among you and leave wives behind - they, [the wives], shall wait four months and ten days."</span>
+              <span class="anek-malayalam">വിശുദ്ധ ഖുർആൻ 2:234</span>
+            </div>
+          </div>
+        </div>
+        <div class="content-box highlight">
+          <h4 style="color: var(--accent-purple); margin-bottom: 12px;"><i class="fa-solid fa-scale-balanced"></i> Dual Purpose of 'Iddah</h4>
+          <ul class="point-list">
+            <li class="point-item emerald">
+              <i class="fa-solid fa-microscope"></i>
+              <div><b>Biological/Lineal:</b> Ascertaining the emptiness of the womb (*Istibra' al-Rahim*) to avoid any paternity confusion.</div>
+            </li>
+            <li class="point-item gold">
+              <i class="fa-solid fa-mosque"></i>
+              <div><b>Devotional/Mourning (*Ta'abbudi wa-Hidad*):</b> Honoring the sacred bond of the dissolved marriage and showing fidelity.</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 17: Scenario Analysis: Insemination During 'Iddah vs. Post-'Iddah -->
+    <section class="slide" data-presenter="4" data-pname="Presenter 4: 'Iddah, Ethics & Synthesis">
+      <div class="slide-grid full">
+        <div class="content-box">
+          <h3 class="title-large">Scenario Matrix: Insemination Timing</h3>
+          <div class="malayalam-subtitle">ഇദ്ദ കാലയളവിലെയും ശേഷമുള്ളതുമായ ഗർഭധാരണ താരതമ്യം</div>
+          
+          <div class="slide-grid equal" style="margin-top: 15px; gap: 20px;">
+            <div style="background: rgba(251,191,36,0.06); border: 1px solid rgba(251,191,36,0.3); padding: 22px; border-radius: 14px;">
+              <h4 style="color: var(--primary-gold); font-size: 1.15rem; margin-bottom: 10px;">
+                <i class="fa-solid fa-clock"></i> Case A: Insemination During 'Iddah
+              </h4>
+              <p style="font-size: 0.88rem; line-height: 1.6; color: #cbd5e1;">
+                • <b>Does it extend the 'Iddah?</b> Classical Hanbali & Shafi'i scholars state <b>NO</b>. 'Iddah only ends with childbirth if the pregnancy originated <i>from living marital intercourse</i>.<br>
+                • <b>Ruling:</b> The procedure is strictly prohibited (*Haram*), and the child has no *Nasab* to the husband.
+              </p>
+            </div>
+
+            <div style="background: rgba(244,63,94,0.06); border: 1px solid rgba(244,63,94,0.3); padding: 22px; border-radius: 14px;">
+              <h4 style="color: var(--accent-coral); font-size: 1.15rem; margin-bottom: 10px;">
+                <i class="fa-solid fa-calendar-xmark"></i> Case B: Insemination Post-'Iddah
+              </h4>
+              <p style="font-size: 0.88rem; line-height: 1.6; color: #cbd5e1;">
+                • <b>Total Alienation:</b> The widow is now a complete legal stranger (*Ajnabiyyah*) to the deceased husband's lineage.<br>
+                • <b>Status:</b> Using his sperm is equivalent to receiving genetic material from a non-spouse, violating the core bioethical bounds of Islamic family law.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 18: Ethical Dilemmas: Consent, Autonomy & the Deceased's Will -->
+    <section class="slide" data-presenter="4" data-pname="Presenter 4: 'Iddah, Ethics & Synthesis">
+      <div class="slide-grid">
+        <div class="content-box">
+          <h3 class="title-large">Autonomy & Consent Dilemmas</h3>
+          <div class="malayalam-subtitle">സമ്മതം, സ്വയംനിർണ്ണയാവകാശം, ധാർമ്മിക പ്രശ്നങ്ങൾ</div>
+          <p class="lead-text">
+            Can explicit pre-mortem written consent from the husband legitimize posthumous ART under Islamic law?
+          </p>
+          <ul class="point-list">
+            <li class="point-item coral">
+              <i class="fa-solid fa-ban"></i>
+              <div><b>Limits of Autonomy:</b> In Islamic jurisprudence, human bodily autonomy is subject to divine boundaries (*Hudud Allah*). One cannot consent to an act that the Shari'ah renders unlawful.</div>
+            </li>
+            <li class="point-item gold">
+              <i class="fa-solid fa-file-contract"></i>
+              <div><b>Invalidity of Unlawful Stipulations:</b> The Prophet ﷺ said: <i>"Any condition not in the Book of Allah is invalid, even if it were a hundred conditions."</i></div>
+            </li>
+          </ul>
+        </div>
+        <div class="content-box highlight">
+          <h4 style="color: var(--accent-blue); margin-bottom: 12px;"><i class="fa-solid fa-child-reaching"></i> Welfare of the Child (Maslahat al-Tifl)</h4>
+          <p style="font-size: 0.88rem; line-height: 1.6; color: #cbd5e1;">
+            Islamic bioethics places paramount emphasis on the child's right to:
+          </p>
+          <div class="diagram-container" style="margin-top: 10px;">
+            <div class="diagram-step">
+              <i class="fa-solid fa-users-rays" style="color: var(--primary-emerald);"></i>
+              <div><b>A Living Father:</b> To be nurtured by two living parents.</div>
+            </div>
+            <div class="diagram-step">
+              <i class="fa-solid fa-id-card" style="color: var(--primary-gold);"></i>
+              <div><b>Uncontested Lineage:</b> Free from social stigma or legal disenfranchisement.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 19: Comprehensive Jurisprudential Matrix (Summary Table) -->
+    <section class="slide" data-presenter="4" data-pname="Presenter 4: 'Iddah, Ethics & Synthesis">
+      <div class="slide-grid full">
+        <div class="content-box">
+          <h3 class="title-large">Comprehensive Fiqh Synthesis Matrix</h3>
+          <div class="malayalam-subtitle">കർമ്മശാസ്ത്ര വിധി സംഗ്രഹം ഒറ്റനോട്ടത്തിൽ</div>
+          
+          <table class="fiqh-table" style="margin-top: 15px;">
+            <thead>
+              <tr>
+                <th>Legal Dimension</th>
+                <th>Standard Islamic Ruling</th>
+                <th>Underlying Jurisprudential Cause (*'Illah*)</th>
+                <th>Malayalam Meaning (<span class="anek-malayalam">മലയാളം അർത്ഥം</span>)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>Posthumous ART Permissibility</b></td>
+                <td><b style="color: var(--accent-coral);">PROHIBITED (Haram)</b></td>
+                <td>Dissolution of marriage contract by death</td>
+                <td><span class="anek-malayalam">നിഷിദ്ധം (ഹറാം)</span></td>
+              </tr>
+              <tr>
+                <td><b>Lineage / Paternity (Nasab)</b></td>
+                <td><b style="color: var(--accent-coral);">NOT ESTABLISHED</b></td>
+                <td>Extinction of valid marital bed (*Firash*)</td>
+                <td><span class="anek-malayalam">നസബ് സ്ഥിരപ്പെടില്ല</span></td>
+              </tr>
+              <tr>
+                <td><b>Inheritance (Mawarith)</b></td>
+                <td><b style="color: var(--accent-coral);">NO INHERITANCE</b></td>
+                <td>Non-existence as living heir at ancestor's death</td>
+                <td><span class="anek-malayalam">അനന്തരാവകാശമില്ല</span></td>
+              </tr>
+              <tr>
+                <td><b>Bequest (Wasiyyah)</b></td>
+                <td><b style="color: var(--primary-emerald);">PERMISSIBLE (Max 1/3)</b></td>
+                <td>Valid for non-heir beneficiary</td>
+                <td><span class="anek-malayalam">വസ്വിയ്യത്ത് അനുവദനീയം (1/3)</span></td>
+              </tr>
+              <tr>
+                <td><b>Destruction of Frozen Sperm</b></td>
+                <td><b style="color: var(--primary-gold);">MANDATORY UPON DEATH</b></td>
+                <td>Prevention of misuse and illicit conception</td>
+                <td><span class="anek-malayalam">നശിപ്പിക്കൽ നിർബന്ധം</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 20: Conclusion & Policy Recommendations -->
+    <section class="slide" data-presenter="4" data-pname="Presenter 4: 'Iddah, Ethics & Synthesis">
+      <div class="slide-grid full">
+        <div class="content-box highlight" style="text-align: center; align-items: center; justify-content: center; padding: 40px;">
+          <i class="fa-solid fa-graduation-cap" style="font-size: 3rem; color: var(--primary-gold); margin-bottom: 15px;"></i>
+          <h3 class="title-large" style="font-size: 2.3rem;">Scholarly Conclusion & Recommendations</h3>
+          <div class="malayalam-subtitle" style="font-size: 1.3rem; justify-content: center;">
+            ഉപസംഹാരവും നയരൂപീകരണ ശുപാർശകളും
+          </div>
+          
+          <div class="slide-grid three-col" style="margin-top: 25px; text-align: left; gap: 20px; width: 100%;">
+            <div style="background: rgba(255,255,255,0.03); padding: 20px; border-radius: 12px; border-left: 3px solid var(--accent-blue);">
+              <b style="color: var(--accent-blue);">1. Clinic Regulation:</b>
+              <p style="font-size: 0.85rem; color: #cbd5e1; margin-top: 8px;">Fertility clinics in Muslim-majority jurisdictions must mandate automatic disposal of cryopreserved gametes upon proof of spousal death.</p>
+            </div>
+            <div style="background: rgba(255,255,255,0.03); padding: 20px; border-radius: 12px; border-left: 3px solid var(--primary-emerald);">
+              <b style="color: var(--primary-emerald);">2. Legislative Clarity:</b>
+              <p style="font-size: 0.85rem; color: #cbd5e1; margin-top: 8px;">Islamic personal law codes should explicitly codify the non-recognition of post-mortem paternity to prevent protracted inheritance litigation.</p>
+            </div>
+            <div style="background: rgba(255,255,255,0.03); padding: 20px; border-radius: 12px; border-left: 3px solid var(--primary-gold);">
+              <b style="color: var(--primary-gold);">3. Maqasid Harmony:</b>
+              <p style="font-size: 0.85rem; color: #cbd5e1; margin-top: 8px;">Preserving lineage integrity (*Hifz al-Nasl*) supersedes individual desires for bereavement procreation.</p>
+            </div>
+          </div>
+
+          <div style="margin-top: 30px; font-size: 0.9rem; color: var(--text-muted);">
+            <b>Thank You • നന്ദി • جَزَاكُمُ ٱللَّٰهُ خَيْرًا</b>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER CONTROLS -->
+  <footer>
+    <div class="nav-controls">
+      <button id="btnPrev" class="btn-nav"><i class="fa-solid fa-chevron-left"></i> Previous</button>
+      <button id="btnNext" class="btn-nav">Next <i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+
+    <div class="progress-wrapper">
+      <div class="progress-bar-bg">
+        <div id="progressBar" class="progress-bar-fill"></div>
+      </div>
+      <div class="slide-counter">
+        Slide <span id="currentSlideNum">1</span> of <span id="totalSlidesNum">20</span>
+      </div>
+    </div>
+
+    <div>
+      <span style="font-size: 0.8rem; color: var(--text-muted);">
+        Use <kbd style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px;">←</kbd> <kbd style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px;">→</kbd> Keys
+      </span>
+    </div>
+  </footer>
+
+  <!-- DRAWER MODAL (Slide Directory) -->
+  <aside id="slideDrawer" class="drawer-modal">
+    <div class="drawer-header">
+      <h3 style="color: var(--primary-gold); font-size: 1.1rem;"><i class="fa-solid fa-list-ol"></i> Slide Index</h3>
+      <button id="drawerClose" style="background: none; border: none; color: #fff; font-size: 1.2rem; cursor: pointer;">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div id="drawerList" class="drawer-list"></div>
+  </aside>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const slides = document.querySelectorAll('.slide');
+      const totalSlides = slides.length;
+      let currentIndex = 0;
+
+      const btnPrev = document.getElementById('btnPrev');
+      const btnNext = document.getElementById('btnNext');
+      const progressBar = document.getElementById('progressBar');
+      const currentSlideNum = document.getElementById('currentSlideNum');
+      const totalSlidesNum = document.getElementById('totalSlidesNum');
+      const presenterBadge = document.getElementById('presenterBadge');
+      const presenterName = document.getElementById('presenterName');
+      
+      const slideDrawer = document.getElementById('slideDrawer');
+      const drawerToggle = document.getElementById('drawerToggle');
+      const drawerClose = document.getElementById('drawerClose');
+      const drawerList = document.getElementById('drawerList');
+
+      totalSlidesNum.textContent = totalSlides;
+
+      // Presenter configuration mapping
+      const presenterConfig = {
+        1: { name: "Presenter 1: Foundation & Biomedical Context", class: "p1" },
+        2: { name: "Presenter 2: Nasab & Paternity Jurisprudence", class: "p2" },
+        3: { name: "Presenter 3: Mawarith & Financial Status", class: "p3" },
+        4: { name: "Presenter 4: 'Iddah, Ethics & Conclusion", class: "p4" }
+      };
+
+      // Populate Drawer Directory
+      slides.forEach((slide, idx) => {
+        const titleEl = slide.querySelector('.title-large');
+        const titleText = titleEl ? titleEl.textContent : `Slide ${idx + 1}`;
+        const pNum = slide.getAttribute('data-presenter') || "1";
+
+        const item = document.createElement('div');
+        item.className = `drawer-item ${idx === 0 ? 'active' : ''}`;
+        item.innerHTML = `
+          <span><b>${idx + 1}.</b> ${titleText.substring(0, 32)}...</span>
+          <span style="font-size: 0.7rem; opacity: 0.7;">P${pNum}</span>
+        `;
+        item.addEventListener('click', () => {
+          goToSlide(idx);
+          toggleDrawer(false);
+        });
+        drawerList.appendChild(item);
+      });
+
+      function updateSlide(index) {
+        slides.forEach((slide, idx) => {
+          slide.classList.toggle('active', idx === index);
+        });
+
+        // Update Drawer list active states
+        const drawerItems = drawerList.querySelectorAll('.drawer-item');
+        drawerItems.forEach((item, idx) => {
+          item.classList.toggle('active', idx === index);
+        });
+
+        // Update Counter & Progress
+        currentSlideNum.textContent = index + 1;
+        const progressPercent = ((index + 1) / totalSlides) * 100;
+        progressBar.style.width = `${progressPercent}%`;
+
+        // Update Presenter Badge
+        const activeSlide = slides[index];
+        const pNum = activeSlide.getAttribute('data-presenter') || "1";
+        const config = presenterConfig[pNum];
+
+        presenterBadge.className = `presenter-pill ${config.class}`;
+        presenterName.textContent = config.name;
+
+        // Button disabled states
+        btnPrev.style.opacity = index === 0 ? '0.4' : '1';
+        btnPrev.style.pointerEvents = index === 0 ? 'none' : 'all';
+        btnNext.style.opacity = index === totalSlides - 1 ? '0.4' : '1';
+        btnNext.style.pointerEvents = index === totalSlides - 1 ? 'none' : 'all';
+      }
+
+      function goToSlide(index) {
+        if (index >= 0 && index < totalSlides) {
+          currentIndex = index;
+          updateSlide(currentIndex);
+        }
+      }
+
+      function nextSlide() {
+        if (currentIndex < totalSlides - 1) {
+          goToSlide(currentIndex + 1);
+        }
+      }
+
+      function prevSlide() {
+        if (currentIndex > 0) {
+          goToSlide(currentIndex - 1);
+        }
+      }
+
+      function toggleDrawer(open) {
+        slideDrawer.classList.toggle('open', open);
+      }
+
+      // Event Listeners
+      btnNext.addEventListener('click', nextSlide);
+      btnPrev.addEventListener('click', prevSlide);
+
+      drawerToggle.addEventListener('click', () => toggleDrawer(true));
+      drawerClose.addEventListener('click', () => toggleDrawer(false));
+
+      // Keyboard Controls
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'Space') {
+          e.preventDefault();
+          nextSlide();
+        } else if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          prevSlide();
+        } else if (e.key === 'Escape') {
+          toggleDrawer(false);
+        }
+      });
+
+      // Initialize
+      updateSlide(0);
+    });
+  </script>
+</body>
+</html>
