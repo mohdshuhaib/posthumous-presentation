@@ -21,17 +21,15 @@
       --primary-gold: #e5ad35;
       --primary-emerald: #10b981;
       --accent-blue: #38bdf8;
-      --accent-purple: #c084fc;
       --accent-coral: #fb7185;
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
       --border-color: rgba(229, 173, 53, 0.25);
       
-      /* Presenter Accent Badges */
+      /* Presenter Accent Badges (3 Presenters) */
       --p1-color: #38bdf8;
       --p2-color: #10b981;
       --p3-color: #fbbf24;
-      --p4-color: #f43f5e;
     }
 
     * {
@@ -75,7 +73,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(5, 11, 20, 0.8);
+      background: rgba(5, 11, 20, 0.85);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border-color);
       z-index: 100;
@@ -93,7 +91,7 @@
     }
 
     .presenter-pill {
-      padding: 4px 14px;
+      padding: 5px 16px;
       border-radius: 999px;
       font-size: 0.85rem;
       font-weight: 700;
@@ -107,7 +105,6 @@
     .p1 { background: rgba(56, 189, 248, 0.15); border: 1px solid var(--p1-color); color: var(--p1-color); }
     .p2 { background: rgba(16, 185, 129, 0.15); border: 1px solid var(--p2-color); color: var(--p2-color); }
     .p3 { background: rgba(251, 191, 36, 0.15); border: 1px solid var(--p3-color); color: var(--p3-color); }
-    .p4 { background: rgba(244, 63, 94, 0.15); border: 1px solid var(--p4-color); color: var(--p4-color); }
 
     /* Main Slide Container */
     main {
@@ -476,7 +473,6 @@
       color: var(--primary-gold);
     }
 
-    /* Custom Responsive Overrides */
     @media (max-width: 1024px) {
       .slide-grid, .slide-grid.equal, .slide-grid.three-col {
         grid-template-columns: 1fr;
@@ -497,7 +493,7 @@
     
     <div id="presenterBadge" class="presenter-pill p1">
       <i class="fa-solid fa-user-tie"></i>
-      <span id="presenterName">Presenter 1: Foundation & Biomedical Context</span>
+      <span id="presenterName">Presenter 1: Foundations, Context & Lineage Principle</span>
     </div>
 
     <button id="drawerToggle" class="btn-nav" style="padding: 6px 12px;">
@@ -509,11 +505,11 @@
   <main>
 
     <!-- ==============================================
-         PRESENTER 1: FOUNDATION & BIOMEDICAL CONTEXT (Slides 1 - 5)
+         PRESENTER 1: FOUNDATION, CONTEXT & NASAB PRINCIPLE (Slides 1 - 7)
     =============================================== -->
 
     <!-- SLIDE 1: Master Title -->
-    <section class="slide active" data-presenter="1" data-pname="Presenter 1: Foundations & Context">
+    <section class="slide active" data-presenter="1">
       <div class="slide-grid full">
         <div class="content-box highlight" style="text-align: center; align-items: center; justify-content: center; padding: 45px;">
           <span style="color: var(--primary-gold); font-size: 0.95rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">
@@ -532,7 +528,7 @@
             <div class="term-pill"><b>Posthumous ART:</b> <span class="ml">മരണാനന്തര ഗർഭധാരണം</span></div>
           </div>
           <div style="margin-top: 30px; display: flex; gap: 20px; color: var(--text-muted); font-size: 0.9rem;">
-            <span><i class="fa-solid fa-users"></i> 4-Member Collaborative Panel</span>
+            <span><i class="fa-solid fa-users"></i> 3-Member Collaborative Panel</span>
             <span><i class="fa-solid fa-book-quran"></i> Classical Fiqh & Modern Bio-Fatawa</span>
           </div>
         </div>
@@ -540,7 +536,7 @@
     </section>
 
     <!-- SLIDE 2: Research Problem & The Core Conflict -->
-    <section class="slide" data-presenter="1" data-pname="Presenter 1: Foundations & Context">
+    <section class="slide" data-presenter="1">
       <div class="slide-grid">
         <div class="content-box">
           <h3 class="title-large">The Modern Bioethical Trilemma</h3>
@@ -584,7 +580,7 @@
     </section>
 
     <!-- SLIDE 3: Biomedical Mechanisms of Posthumous Reproduction -->
-    <section class="slide" data-presenter="1" data-pname="Presenter 1: Foundations & Context">
+    <section class="slide" data-presenter="1">
       <div class="slide-grid">
         <div class="content-box">
           <h3 class="title-large">Biomedical Procedures</h3>
@@ -630,7 +626,7 @@
     </section>
 
     <!-- SLIDE 4: Marital Contract Dissolution (*Inqida' al-Zawjiyyah*) -->
-    <section class="slide" data-presenter="1" data-pname="Presenter 1: Foundations & Context">
+    <section class="slide" data-presenter="1">
       <div class="slide-grid">
         <div class="content-box">
           <h3 class="title-large">Dissolution of Marriage by Death</h3>
@@ -688,7 +684,7 @@
     </section>
 
     <!-- SLIDE 5: Fiqh Maxim: Default Prohibition in Conjugal Matters -->
-    <section class="slide" data-presenter="1" data-pname="Presenter 1: Foundations & Context">
+    <section class="slide" data-presenter="1">
       <div class="slide-grid full">
         <div class="content-box highlight">
           <h3 class="title-large">Legal Maxim: Default Status of Sexual Legality</h3>
@@ -710,7 +706,7 @@
               </p>
             </div>
             <div style="background: rgba(255,255,255,0.03); padding: 18px; border-radius: 12px;">
-              <h4 style="color: var(--primary-gold);"><i class="fa-solid fa-hand-holding-hand"></i> The Crucial Conclusion of P1</h4>
+              <h4 style="color: var(--primary-gold);"><i class="fa-solid fa-hand-holding-hand"></i> Contractual Reality</h4>
               <p style="font-size: 0.9rem; color: #cbd5e1; margin-top: 8px;">
                 Because death abolishes the active marriage contract, posthumous conception occurs when no valid legal union (*Nikah Sahih*) exists at the precise moment of fertilisation.
               </p>
@@ -720,12 +716,8 @@
       </div>
     </section>
 
-    <!-- ==============================================
-         PRESENTER 2: NASAB & PATERNITY (Slides 6 - 10)
-    =============================================== -->
-
     <!-- SLIDE 6: Maqasid al-Shari'ah & Preservation of Lineage (*Hifz al-Nasl*) -->
-    <section class="slide" data-presenter="2" data-pname="Presenter 2: Nasab & Lineage">
+    <section class="slide" data-presenter="1">
       <div class="slide-grid">
         <div class="content-box">
           <h3 class="title-large">Maqasid al-Shari'ah: Hifz al-Nasl</h3>
@@ -758,7 +750,7 @@
     </section>
 
     <!-- SLIDE 7: The Master Principle: *Al-Walad li al-Firash* -->
-    <section class="slide" data-presenter="2" data-pname="Presenter 2: Nasab & Lineage">
+    <section class="slide" data-presenter="1">
       <div class="slide-grid">
         <div class="content-box">
           <h3 class="title-large">The Marital Bed Principle</h3>
@@ -811,8 +803,12 @@
       </div>
     </section>
 
+    <!-- ==============================================
+         PRESENTER 2: CLASSICAL FIQH, FATAWA & MAWARITH (Slides 8 - 14)
+    =============================================== -->
+
     <!-- SLIDE 8: The Legal Status of *Istidkhal al-Mani* (Self-Insemination Post-Mortem) -->
-    <section class="slide" data-presenter="2" data-pname="Presenter 2: Nasab & Lineage">
+    <section class="slide" data-presenter="2">
       <div class="slide-grid">
         <div class="content-box highlight">
           <h3 class="title-large">Classical Jurisprudence on Post-Mortem Semen</h3>
@@ -847,7 +843,7 @@
     </section>
 
     <!-- SLIDE 9: Contemporary Institutional Fatawa (OIC & Al-Azhar) -->
-    <section class="slide" data-presenter="2" data-pname="Presenter 2: Nasab & Lineage">
+    <section class="slide" data-presenter="2">
       <div class="slide-grid full">
         <div class="content-box">
           <h3 class="title-large">Contemporary Consensus of Fiqh Academies</h3>
@@ -887,7 +883,7 @@
     </section>
 
     <!-- SLIDE 10: Comparative Legal Analysis: Sunni, Shia & Western Law -->
-    <section class="slide" data-presenter="2" data-pname="Presenter 2: Nasab & Lineage">
+    <section class="slide" data-presenter="2">
       <div class="slide-grid">
         <div class="content-box">
           <h3 class="title-large">Comparative Legal Perspectives</h3>
@@ -908,7 +904,7 @@
               </tr>
               <tr>
                 <td><b>Minority Shia (Ja'fari)</b></td>
-                <td>Permitted by some (e.g., Khamenei) if consent exists</td>
+                <td>Permitted by some if consent exists</td>
                 <td>Biological link recognized, inheritance debated</td>
               </tr>
               <tr>
@@ -925,20 +921,16 @@
           </table>
         </div>
         <div class="content-box highlight">
-          <h4 style="color: var(--primary-gold);"><i class="fa-solid fa-clipboard-check"></i> Synthesis for Presenter 2</h4>
+          <h4 style="color: var(--primary-gold);"><i class="fa-solid fa-clipboard-check"></i> Summary of Lineage Position</h4>
           <p style="font-size: 0.92rem; color: #cbd5e1; margin-top: 10px; line-height: 1.6;">
-            The overwhelming Sunni consensus denies *Nasab* to posthumously conceived children because the valid *Firash* ceased at death. Genetic relationship alone does not fulfill the requirements of Islamic paternity.
+            The overwhelming Sunni consensus denies *Nasab* to posthumously conceived children because the valid *Firash* ceased at death. This directly determines the inheritance status.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- ==============================================
-         PRESENTER 3: MAWARITH & INHERITANCE (Slides 11 - 15)
-    =============================================== -->
-
     <!-- SLIDE 11: Conditions of Inheritance (*Shurut al-Irth*) -->
-    <section class="slide" data-presenter="3" data-pname="Presenter 3: Mawarith & Financials">
+    <section class="slide" data-presenter="2">
       <div class="slide-grid">
         <div class="content-box">
           <h3 class="title-large">Conditions for Islamic Inheritance</h3>
@@ -978,7 +970,7 @@
     </section>
 
     <!-- SLIDE 12: *Al-Haml* (Fetus in Utero) vs. Cryopreserved Gametes -->
-    <section class="slide" data-presenter="3" data-pname="Presenter 3: Mawarith & Financials">
+    <section class="slide" data-presenter="2">
       <div class="slide-grid full">
         <div class="content-box">
           <h3 class="title-large">The Crucial Legal Distinction: *Al-Haml* vs. Gametes</h3>
@@ -1030,7 +1022,7 @@
     </section>
 
     <!-- SLIDE 13: Freezing the Estate (*Tarkah* Impasse) -->
-    <section class="slide" data-presenter="3" data-pname="Presenter 3: Mawarith & Financials">
+    <section class="slide" data-presenter="2">
       <div class="slide-grid">
         <div class="content-box">
           <h3 class="title-large">The Estate Distribution Impasse</h3>
@@ -1071,7 +1063,7 @@
     </section>
 
     <!-- SLIDE 14: Bequest (*Wasiyyah*) as an Alternative Financial Remedy -->
-    <section class="slide" data-presenter="3" data-pname="Presenter 3: Mawarith & Financials">
+    <section class="slide" data-presenter="2">
       <div class="slide-grid">
         <div class="content-box">
           <h3 class="title-large">Wasiyyah: A Possible Financial Instrument?</h3>
@@ -1108,8 +1100,12 @@
       </div>
     </section>
 
+    <!-- ==============================================
+         PRESENTER 3: 'IDDAH, ETHICS, SYNTHESIS & CONCLUSION (Slides 15 - 20)
+    =============================================== -->
+
     <!-- SLIDE 15: Child Support (*Nafaqah*) & Custody Overview -->
-    <section class="slide" data-presenter="3" data-pname="Presenter 3: Mawarith & Financials">
+    <section class="slide" data-presenter="3">
       <div class="slide-grid full">
         <div class="content-box">
           <h3 class="title-large">Financial Maintenance & Paternal Obligations</h3>
@@ -1141,12 +1137,8 @@
       </div>
     </section>
 
-    <!-- ==============================================
-         PRESENTER 4: 'IDDAH, ETHICS & CONCLUSION (Slides 16 - 20)
-    =============================================== -->
-
     <!-- SLIDE 16: Teleology & Mandate of 'Iddah (*Hifz al-Arham*) -->
-    <section class="slide" data-presenter="4" data-pname="Presenter 4: 'Iddah, Ethics & Synthesis">
+    <section class="slide" data-presenter="3">
       <div class="slide-grid">
         <div class="content-box">
           <h3 class="title-large">The Institution of 'Iddah</h3>
@@ -1163,7 +1155,7 @@
           </div>
         </div>
         <div class="content-box highlight">
-          <h4 style="color: var(--accent-purple); margin-bottom: 12px;"><i class="fa-solid fa-scale-balanced"></i> Dual Purpose of 'Iddah</h4>
+          <h4 style="color: var(--primary-gold); margin-bottom: 12px;"><i class="fa-solid fa-scale-balanced"></i> Dual Purpose of 'Iddah</h4>
           <ul class="point-list">
             <li class="point-item emerald">
               <i class="fa-solid fa-microscope"></i>
@@ -1179,7 +1171,7 @@
     </section>
 
     <!-- SLIDE 17: Scenario Analysis: Insemination During 'Iddah vs. Post-'Iddah -->
-    <section class="slide" data-presenter="4" data-pname="Presenter 4: 'Iddah, Ethics & Synthesis">
+    <section class="slide" data-presenter="3">
       <div class="slide-grid full">
         <div class="content-box">
           <h3 class="title-large">Scenario Matrix: Insemination Timing</h3>
@@ -1211,7 +1203,7 @@
     </section>
 
     <!-- SLIDE 18: Ethical Dilemmas: Consent, Autonomy & the Deceased's Will -->
-    <section class="slide" data-presenter="4" data-pname="Presenter 4: 'Iddah, Ethics & Synthesis">
+    <section class="slide" data-presenter="3">
       <div class="slide-grid">
         <div class="content-box">
           <h3 class="title-large">Autonomy & Consent Dilemmas</h3>
@@ -1250,7 +1242,7 @@
     </section>
 
     <!-- SLIDE 19: Comprehensive Jurisprudential Matrix (Summary Table) -->
-    <section class="slide" data-presenter="4" data-pname="Presenter 4: 'Iddah, Ethics & Synthesis">
+    <section class="slide" data-presenter="3">
       <div class="slide-grid full">
         <div class="content-box">
           <h3 class="title-large">Comprehensive Fiqh Synthesis Matrix</h3>
@@ -1303,7 +1295,7 @@
     </section>
 
     <!-- SLIDE 20: Conclusion & Policy Recommendations -->
-    <section class="slide" data-presenter="4" data-pname="Presenter 4: 'Iddah, Ethics & Synthesis">
+    <section class="slide" data-presenter="3">
       <div class="slide-grid full">
         <div class="content-box highlight" style="text-align: center; align-items: center; justify-content: center; padding: 40px;">
           <i class="fa-solid fa-graduation-cap" style="font-size: 3rem; color: var(--primary-gold); margin-bottom: 15px;"></i>
@@ -1362,7 +1354,7 @@
   <!-- DRAWER MODAL (Slide Directory) -->
   <aside id="slideDrawer" class="drawer-modal">
     <div class="drawer-header">
-      <h3 style="color: var(--primary-gold); font-size: 1.1rem;"><i class="fa-solid fa-list-ol"></i> Slide Index</h3>
+      <h3 style="color: var(--primary-gold); font-size: 1.1rem;"><i class="fa-solid fa-list-ol"></i> Slide Index (3 Presenters)</h3>
       <button id="drawerClose" style="background: none; border: none; color: #fff; font-size: 1.2rem; cursor: pointer;">
         <i class="fa-solid fa-xmark"></i>
       </button>
@@ -1392,12 +1384,11 @@
 
       totalSlidesNum.textContent = totalSlides;
 
-      // Presenter configuration mapping
+      // 3-Presenter Configuration Mapping
       const presenterConfig = {
-        1: { name: "Presenter 1: Foundation & Biomedical Context", class: "p1" },
-        2: { name: "Presenter 2: Nasab & Paternity Jurisprudence", class: "p2" },
-        3: { name: "Presenter 3: Mawarith & Financial Status", class: "p3" },
-        4: { name: "Presenter 4: 'Iddah, Ethics & Conclusion", class: "p4" }
+        1: { name: "Presenter 1: Foundations, Context & Lineage Principle", class: "p1" },
+        2: { name: "Presenter 2: Fiqh Fatawa & Mawarith (Inheritance)", class: "p2" },
+        3: { name: "Presenter 3: 'Iddah, Moral Dilemmas & Synthesis", class: "p3" }
       };
 
       // Populate Drawer Directory
@@ -1409,8 +1400,8 @@
         const item = document.createElement('div');
         item.className = `drawer-item ${idx === 0 ? 'active' : ''}`;
         item.innerHTML = `
-          <span><b>${idx + 1}.</b> ${titleText.substring(0, 32)}...</span>
-          <span style="font-size: 0.7rem; opacity: 0.7;">P${pNum}</span>
+          <span><b>${idx + 1}.</b> ${titleText.substring(0, 30)}...</span>
+          <span style="font-size: 0.7rem; font-weight: 700; opacity: 0.8; color: var(--${pNum === '1' ? 'accent-blue' : pNum === '2' ? 'primary-emerald' : 'primary-gold'});">P${pNum}</span>
         `;
         item.addEventListener('click', () => {
           goToSlide(idx);
